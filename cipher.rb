@@ -1,7 +1,3 @@
-input = File.new("input.txt")
-
-content = input.read
-
 def encode str
 	code = ""
 	str.each_char do |c|
@@ -27,11 +23,16 @@ def encode str
 end
 
 
+output = File.open("output.txt","w" )
+input = File.new("input.txt")
 
-output = File.open("output.txt", "w")
-output.write encode(content)
-output.close
-
+input.each_line do |line|
+	line = line.split(" ")
+	line.delete_at(0)
+	line = line.join(" ")
+	line += "\n"
+	output.write(encode(line))
+end
 
 
 
