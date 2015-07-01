@@ -4,9 +4,9 @@ key = nil
 	puts "what is the code key?"
 	while key.nil? do
 		begin
-			key = Integer(gets.chomp).to_i
+			key = Integer(gets.chomp)
 		rescue ArgumentError
-			key = 13
+			key = 0
 		end
 	end
 
