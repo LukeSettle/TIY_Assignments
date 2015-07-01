@@ -1,14 +1,28 @@
 def encode str
+key = nil
+	# get the amount cipher moves
+	puts "what is the code key?"
+	while key.nil? do
+		begin
+			key = Integer(gets.chomp).to_i
+		rescue ArgumentError
+			key = 13
+		end
+	end
+
+
 	code = ""
 	str.each_char do |c|
 		if c.ord >= 65 && c.ord <= 90
-			c = (c.ord + 13)
+			c = (c.ord + key)
 			if c > 90
-				c = (c.ord - 26) 
+				c = (c.ord - 26)
+				code << c.chr
+			else
 				code << c.chr
 			end
 		elsif c.ord >= 97 && c.ord <= 122
-			c = c.ord + 13
+			c = c.ord + key
 			if c > 122
 				c = (c.ord - 26)
 				code << c.chr
@@ -33,6 +47,5 @@ input.each_line do |line|
 	line += "\n"
 	output.write(encode(line))
 end
-
 
 
