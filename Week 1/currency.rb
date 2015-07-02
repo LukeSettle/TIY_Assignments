@@ -16,8 +16,6 @@ def current_amount
       @amount = amount
 end
 
-def same cur cur2
-      if cur.current_code == cur2.current_code && cur.current_amount == cur2.current_amount
-            cur = cur2
-      end
+def <=> cur
+      self.current_code <=> a.current_code
 end
