@@ -16,6 +16,6 @@ def current_amount
       @amount = amount
 end
 
-def <=> cur
-      self.current_code <=> a.current_code
+def <=> cur 
+      self.current_code <=> cur.current_code
 end
