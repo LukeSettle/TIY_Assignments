@@ -2,12 +2,11 @@ require 'pry'
 
 class Currency
 
-attr_reader :code, :amount, :wanted
+attr_reader :code, :amount
 
 def initialize code, amount, wanted
       @code = code
       @amount = amount
-      @wanted = wanted
 end
 def current_currency
       @code = code
@@ -17,7 +16,4 @@ def current_amount
       @amount = amount
 end
 
-def wanted_currency
-      @wanted = wanted
-end
 end
