@@ -28,36 +28,6 @@ NATO = {
              }
 
 
-ALPHA = {
-             'ALPHA' => 'A',
-             'BRAVO' => 'B',
-             'CHARLIE' => 'C',
-             'DELTA' => 'D',
-             'ECHO' => 'E',
-             'FOXTROT' => 'F',
-             'GOLF' => 'G',
-             'HOTEL' => 'H',
-             'INDIA' => 'I',
-             'JULIET' => 'J',
-             'KILO' => 'K',
-             'LIMA' => 'L',
-             'MIKE' => 'M',
-             'NOVEMBER' => 'N',
-             'OSCAR' => 'O',
-             'PAPA' => 'P',
-             'QUEBEC' => 'Q',
-             'ROMEO' => 'R',
-             'SIERRA' => 'S',
-             'TANGO' => 'T',
-             'UNIFORM' => 'U',
-             'VICTOR' => 'V',
-             'WHISKEY' => 'W',
-             'XRAY' => 'X',
-             'YANKEE' => 'Y',
-             'ZULU' => 'Z'
-             }
-
-
 def encrypt str
       str.each_char do |c|
             chars = c.upcase.split(" ")
@@ -72,14 +42,10 @@ end
 
 def decrypt str
       words = str.upcase.split(" ")
-            words.each do |w|
-                  words = ALPHA[w]
-                  words = words.downcase
-                  print words
+      words.each do |w|
+            print NATO.key(w)
       end
 end
 
-encrypt "dog"
-
+encrypt("dog")
 decrypt "delta OSCAR GOLF"
-
