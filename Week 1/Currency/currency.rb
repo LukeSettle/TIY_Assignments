@@ -15,24 +15,24 @@ end
 def current_amount
       @amount = amount
 end
-#probably does nothing and makes no sense
-def <=> cur 
-      if (self.current_code <=> cur.current_code) == 1
-            self > cur # I think...
-      elsif (self.current_code <=> cur.current_code) == -1
-            self < cur # maybe...
-      else
-            self == cur
-      end
 
-      if (self.current_amount <=> cur.current_amount) == 0
-            self == cur
-      else
-            self != cur
+def param_check param
+      if param.split("").include?(param.ord)
       end
 end
 
-def subtract cur
+
+
+# Just returns true or false I think...
+def <=> cur 
+      if (self.current_code <=> cur.current_code) != 0
+            nil
+      else
+            self.current_amount <=> cur.current_amount
+      end
+end
+
+def - cur
       if self.current_code == cur.current_code
            subtracted_currency = self.current_amount - cur.current_amount
       else
@@ -40,7 +40,7 @@ def subtract cur
       end
 end
 
-def add cur
+def + cur
       if self.current_code == cur.current_code
            added_currency = cur.current_amount + self.current_amount
       else
@@ -57,7 +57,7 @@ def multiply num
 end
 
 
-
+# This does not make sense, but I don't know what I am even using it for..
 def not_equal cur
       if self.current_amount != cur.current_amount || self.current_code != cur.current_code
             self != cur
