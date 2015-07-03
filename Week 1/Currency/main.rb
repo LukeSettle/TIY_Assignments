@@ -2,22 +2,17 @@ require_relative "Currency"
 require_relative "Converter"
 require "pry"
 
+# puts "$4".tr("$","")
+# str = "$4,000"
 
-# puts "$".ord
+# puts str.scan(/\w/).join('')
+# puts str.scan(/\W/).join('')
 
-# puts "this is USD $"
-# puts "this is euro \u20AC"
-# puts "this is Yen#{165.chr}"
+money = Currency.new  "$15.0"
+money2 = Currency.new "$", 15.0
 
-dollar = Currency.new "usd", 100
+money.param_check
 
-dollar2 = Currency.new "usd", 5
 
-money = [ dollar2.current_amount, dollar.current_amount]
-
-puts money.sort
-
-converted = Converter.new  :first => 1.0, :new => "eur"
-binding.pry
-puts converted.first
-puts converted.new
+puts money.current_amount
+puts money.current_code

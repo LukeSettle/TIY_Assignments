@@ -4,9 +4,9 @@ class Currency
 
 attr_reader :code, :amount
 
-def initialize code, amount
+def initialize code, amount = nil
       @code = code
-      @amount = amount
+      @amount = amount unless amount.nil? == true
 end
 def current_code
       @code = code
@@ -16,11 +16,12 @@ def current_amount
       @amount = amount
 end
 
-def param_check param
-      if param.split("").include?(param.ord)
+def param_check
+      if @amount.nil? == true
+            @amount = @code.scan(/[a-zA-Z0-9_,.]/).join("")
+            @code = @code.tr(".", "").scan(/\W/).join("")
       end
 end
-
 
 
 # Just returns true or false I think...
@@ -49,7 +50,7 @@ def + cur
 end
 
 def multiply num
-      if num.class == Fixnum
+      if num.class == Fixnum || num.class == Float
             new_code = self.current_code
             new_amount = self.current_amount * num
           new_currency = Currency.new new_code, new_amount
