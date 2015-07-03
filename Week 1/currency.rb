@@ -16,9 +16,11 @@ def current_amount
       @amount = amount
 end
 
-# def <=> cur 
-#       if self.current_code <=> cur.current_code
-# end
+def <=> cur 
+      if self.current_code <=> cur.current_code != 0
+            self != cur
+      end
+end
 
 def subtract cur
       if self.current_code == cur.current_code
