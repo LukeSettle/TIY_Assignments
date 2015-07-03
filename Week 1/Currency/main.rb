@@ -1,4 +1,5 @@
 require_relative "Currency"
+require_relative "Converter"
 require "pry"
 
 
@@ -15,3 +16,8 @@ dollar2 = Currency.new "usd", 5
 money = [ dollar2.current_amount, dollar.current_amount]
 
 puts money.sort
+
+converted = Converter.new  :first => 1.0, :new => "eur"
+binding.pry
+puts converted.first
+puts converted.new
