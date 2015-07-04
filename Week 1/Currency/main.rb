@@ -11,8 +11,9 @@ require "pry"
 money = Currency.new  "$15.0"
 money2 = Currency.new "$", 15.0
 
-money.param_check
-
-
 puts money.current_amount
 puts money.current_code
+
+
+puts money2.current_amount
+puts money2.current_code

@@ -7,6 +7,10 @@ attr_reader :code, :amount
 def initialize code, amount = nil
       @code = code
       @amount = amount unless amount.nil? == true
+      if @amount.nil? == true
+            @amount = @code.scan(/[a-zA-Z0-9_,.]/).join("")
+            @code = @code.tr(".", "").scan(/\W/).join("")
+      end
 end
 def current_code
       @code = code
@@ -14,13 +18,6 @@ end
 
 def current_amount
       @amount = amount
-end
-
-def param_check
-      if @amount.nil? == true
-            @amount = @code.scan(/[a-zA-Z0-9_,.]/).join("")
-            @code = @code.tr(".", "").scan(/\W/).join("")
-      end
 end
 
 
