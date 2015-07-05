@@ -1,5 +1,6 @@
 require_relative "currency"
 require "pry"
+
 rates = {
 	"USD" => { "USD" => 1.0, "EUR" => 0.90, "KRW" => 1122.05, "JPY" => 123.16},
 
