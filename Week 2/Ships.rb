@@ -9,6 +9,12 @@ class Ship
 		@size = size
 	end
 
-	def place 
+	def place x y
+		@x = x
+		@y = y
+	end
+
+	def covers?
+
 	end
 end
