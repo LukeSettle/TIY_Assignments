@@ -3,8 +3,15 @@ require "pry"
 class Converter
 	attr_reader :hash, :current_code, :current_amount, :new_code, :new_unit, :new_amount
 
-	def initialize hash
-    	@hash = hash
+	def initialize hash = []
+    	hash = {
+	"$" => { "$" => 1.0, "€" => 0.90, "¥" => 123.16},
+
+	"€" => {"$" => 1.11, "€" => 1.0, "¥" => 136.45},
+	
+	"¥" => {"$" => 0.0081, "€" => 0.0081, "¥" => 1.0}
+	}
+	@hash = hash
   	end
  
 	def final
@@ -12,26 +19,11 @@ class Converter
 	end
 
 
-  	def convert currency
-  		hashes = self.hash
-		@first = hashes[0][0]
-		@second = hashes[1][0]
+  	def convert currency, wanted
 
-		@first.each do |k, v|
-			@current_code = k
-			@current_convert_amount = v
-		end
-		@second.each do |k, v| 
-			@new_code = k
-			@new_convert_unit = v
-		end
-		
-
-		@current_amount = currency.current_amount.to_i
-
-
-		#should be able to do this
-		puts "The new amount is #@new_code#{(@current_amount * @new_convert_unit)}"
+  		@final_amount = (currency.current_amount.to_i * @hash[currency.current_code][wanted])
+  			puts "your new amount is #{wanted}#{@final_amount.round(3)}"
+  
 	end
 
 end
