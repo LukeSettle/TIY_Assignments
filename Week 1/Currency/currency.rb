@@ -8,7 +8,7 @@ def initialize code, amount = nil
       @code = code
       @amount = amount unless amount.nil? == true
       if @amount.nil? == true
-            @amount = @code.scan(/[a-zA-Z0-9_,.]/).join("")
+            @amount = @code.scan(/[a-zA-Z0-9_,.]/).join("").to_i
             @code = @code.tr(".", "").scan(/\W/).join("")
       end
 end
