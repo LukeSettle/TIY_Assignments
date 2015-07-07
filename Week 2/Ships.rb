@@ -1,8 +1,10 @@
 require "pry"
 class Ship
-	attr_reader :size, :x, :y, :axis, :cords
-		def initialize size
+	attr_reader :size, :x, :y, :axis
+	def initialize size
 		@size = size
+		@holes = []
+		self.each_position {|x, y| @holes << Hole.new(x,y)}
 	end
 
 	def length
@@ -11,47 +13,48 @@ class Ship
 
 	def place x, y, axis
 		return false if @x || @y
-			@x = x
-			@y = y
-			@axis = axis
-			true
+		@x = x
+		@y = y
+		@axis = axis
+		true
 	end
 
-	def covers? a, b, cords = []
-	   	x = @x
-	  	y = @y
-	  	@a = a
-	  	@b = b
-	  	@cords = cords << [@x, @y]
-	  	if x == @a and y == @b
-	  		return true
-	  	else
-	    	(@size - 1).times do
-	    		if @axis
-	    	   		x += 1
-	    	   		@cords << [x, y]
-	    	   		
-	    	 	else
-	    	   		y += 1
-	    	   		@cords << [x, y]
-	    	 	end
-
-	    	 	return true if x == @a and y == @b
-	    	end
-	   		false
-	   	end
+	def covers? a, b
+		cover = false
+		self.each_position do |x, y|
+			cover = true if x == a && y == b
+		end
+		cover
 	end
 
 	def overlaps_with?(ship)
-		self.place(@x, @y, @axis)
-		self.covers?(@a, @b)
-		ship.place(@x, @y, @axis)
-		ship.covers?(@a, @b)
-
-		self_cords = self.cords
-		ship_cords = ship.cords
-		both = ship_cords & self_cords
-		return true unless both.empty?
-		false
+		overlap = false
+		self.each_position do |x, y|
+			overlap = true if ship.covers?(x, y)
+		end
+		overlap
 	end
+
+	def fire_at a, b
+		covers? a, b
+	end
+
+	def each_position
+		x = @x
+		y = @y
+
+		@size.times do
+			yield(x,y)
+			if @axis
+				x += 1
+			else
+				y += 1
+			end
+		end
+	end
+
+	# def fire_at(c, d)
+	# 	shot = [c, d]
+	# 	return false unless
+	# end
 end
