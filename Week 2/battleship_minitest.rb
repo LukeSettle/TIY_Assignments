@@ -71,17 +71,13 @@ class BattleshipTest < Minitest::Test
   def test_09_ship_can_be_placed_down
     ship = Ship.new(4)
     assert ship.place(2, 2, false)
-
     refute ship.covers?(2, 1)
-
     assert ship.covers?(2, 2)
     assert ship.covers?(2, 3)
     assert ship.covers?(2, 4)
     assert ship.covers?(2, 5)
-
     refute ship.covers?(2, 6)
     refute ship.covers?(3, 2)
-
   end
 
   def test_10_ship_cant_be_placed_twice
