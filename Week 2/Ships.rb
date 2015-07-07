@@ -1,10 +1,11 @@
 require "pry"
 class Ship
-	attr_reader :size, :x, :y, :axis
-	def initialize size
+	attr_reader :size, :x, :y, :axis, :hits
+	def initialize size, hits = []
 		@size = size
-		@holes = []
-		self.each_position {|x, y| @holes << Hole.new(x,y)}
+		@hits = hits
+		# @holes = []
+		# self.each_position {|x, y| @holes << Hole.new(x, y)}
 	end
 
 	def length
@@ -36,7 +37,15 @@ class Ship
 	end
 
 	def fire_at a, b
-		covers? a, b
+		if covers? a, b
+			@hits << [a, b]
+		end
+	end
+
+	def sunk?
+		sank = false
+		sank = true if @hits.length == self.length
+		sank
 	end
 
 	def each_position
@@ -52,9 +61,4 @@ class Ship
 			end
 		end
 	end
-
-	# def fire_at(c, d)
-	# 	shot = [c, d]
-	# 	return false unless
-	# end
 end
