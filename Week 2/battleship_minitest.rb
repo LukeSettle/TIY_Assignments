@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require "pry"
 
 #Note: This line is going to fail first.
 require './battleship'
@@ -67,17 +68,20 @@ class BattleshipTest < Minitest::Test
     refute ship.covers?(6, 1)
     refute ship.covers?(4, 2)
   end
-
   def test_09_ship_can_be_placed_down
     ship = Ship.new(4)
     assert ship.place(2, 2, false)
+
     refute ship.covers?(2, 1)
+
     assert ship.covers?(2, 2)
     assert ship.covers?(2, 3)
     assert ship.covers?(2, 4)
     assert ship.covers?(2, 5)
+
     refute ship.covers?(2, 6)
     refute ship.covers?(3, 2)
+
   end
 
   def test_10_ship_cant_be_placed_twice
@@ -93,6 +97,7 @@ class BattleshipTest < Minitest::Test
     ship2.place(3, 1, true)
     ship3 = Ship.new(4)
     ship3.place(2, 1, false)
+ 
 
     # Try to use your `covers?` method inside your `overlaps_with?` code.
     assert ship1.overlaps_with?(ship2)

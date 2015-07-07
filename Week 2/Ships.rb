@@ -15,11 +15,13 @@ class Ship
 		@x = x
 		@y = y
 		@axis = axis
+		true
 	end
 
 	def covers? a, b
 	   	x = @x
 	  	y = @y
+
 	  	if x == a and y == b
 	  		return true
 	  	else
@@ -33,5 +35,5 @@ class Ship
 	    	end
 	   		false
 	   	end
-	 end
+	end
 end
