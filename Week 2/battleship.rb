@@ -27,3 +27,8 @@ require "pry"
 # binding.pry
 
 
+# grid = Grid.new
+#     grid.place_ship(Ship.new(4), 3, 3, true)
+#     grid.fire_at(3, 3)
+#     grid.fire_at(3, 3)
+# binding.pry

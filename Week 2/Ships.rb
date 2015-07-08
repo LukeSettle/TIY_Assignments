@@ -28,9 +28,17 @@ class Ship
 	end
 
 	def fire_at a, b
-		hole = covers? a, b
-		return false unless hole
-		hole.hit!
+    hole = covers? a, b
+    return false unless hole
+    if hole.hit?
+      false
+    else
+      hole.hit!
+    end
+  end
+
+	def hit?(a, b)
+		return false if @holes.find { |hole| hole.x == a && hole.y == b}
 	end
 
 	def sunk?
