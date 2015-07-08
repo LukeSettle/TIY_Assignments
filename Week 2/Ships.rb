@@ -1,64 +1,40 @@
-require "pry"
+require './hole'
 class Ship
-	attr_reader :size, :x, :y, :axis, :hits
-	def initialize size, hits = []
-		@size = size
-		@hits = hits
-		# @holes = []
-		# self.each_position {|x, y| @holes << Hole.new(x, y)}
-	end
-
-	def length
-		@size = size
+  attr_reader :length, :holes
+	def initialize(length)
+		@length = length
+    @holes = []
 	end
 
 	def place x, y, axis
-		return false if @x || @y
-		@x = x
-		@y = y
-		@axis = axis
-		true
+    return false unless @holes.empty?
+		@length.times do
+      @holes << Hole.new(x,y)
+      if axis
+        x += 1
+      else
+        y += 1
+      end
+    end
+    true
 	end
 
 	def covers? a, b
-		cover = false
-		self.each_position do |x, y|
-			cover = true if x == a && y == b
-		end
-		cover
+    @holes.find { |hole| hole.x == a && hole.y == b}
 	end
 
-	def overlaps_with?(ship)
-		overlap = false
-		self.each_position do |x, y|
-			overlap = true if ship.covers?(x, y)
-		end
-		overlap
-	end
+  def overlaps_with? ship
+    @holes.find { |hole| ship.covers? hole.x, hole.y }
+  end
 
-	def fire_at a, b
-		if covers? a, b
-			@hits << [a, b]
-		end
-	end
+  def fire_at a, b
+    hole = covers? a, b
+    return false unless hole
+    hole.hit!
+  end
 
-	def sunk?
-		sank = false
-		sank = true if @hits.length == self.length
-		sank
-	end
-
-	def each_position
-		x = @x
-		y = @y
-
-		@size.times do
-			yield(x,y)
-			if @axis
-				x += 1
-			else
-				y += 1
-			end
-		end
-	end
+  def sunk?
+    hit_holes = @holes.select { |hole| hole.hit? }
+    hit_holes.size == @length
+  end
 end
