@@ -49,4 +49,30 @@ class Grid
     return false unless sunk_ships.count == @ships.count
     true
   end
+
+  def x_of(str)
+    str.gsub!(/\D/, "")
+    str.to_i
+  end
+  def y_of(str)
+    binding.pry
+    chars = str.gsub(/[\d]/, "")
+    chars.ord - 64
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
