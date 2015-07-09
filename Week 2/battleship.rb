@@ -3,32 +3,18 @@ require_relative "HumanPlayer"
 require_relative "ComputerPlayer"
 require_relative "Ships"
 require_relative "Grid"
+require_relative "Game"
 require "pry"
 
-#  ship1 = Ship.new(4)
-#     ship1.place(2, 1, true)
-
-#     ship2 = Ship.new(4)
-#     ship2.place(3, 1, true)
-    
-#     ship3 = Ship.new(4)
-#     ship3.place(2, 1, false)
-
-# ship1.overlaps_with?(ship2)
-# ship1.overlaps_with?(ship3)
-# ship2.overlaps_with?(ship3)
+# player = HumanPlayer.new("Jeff")
+# puts "Jess, where would you like to place a ship of length 2?\nAcross or Down?\n"
+# first_ship_axis = player.get_user_input
+# puts "Jess, where would you like to place a ship of length 5?\nAcross or Down?\n"
+# second_ship_axis - player.get_user_input
 
 
 
-# ship = Ship.new(4)
-
-# ship.coordinates(2, 1, true)
-# print ship.cords
-# binding.pry
-
-
-# grid = Grid.new
-#     grid.place_ship(Ship.new(4), 3, 3, true)
-#     grid.fire_at(3, 3)
-#     grid.fire_at(3, 3)
-# binding.pry
+# "A1"
+# "Down"
+# "A4"
+# "Down"

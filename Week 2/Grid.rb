@@ -1,5 +1,6 @@
 require "pry"
 class Grid
+  attr_reader :ships
   def initialize
     @ships = []
     @holes = []
@@ -51,28 +52,10 @@ class Grid
   end
 
   def x_of(str)
-    str.gsub!(/\D/, "")
-    str.to_i
+    str[1..-1].to_i
   end
+
   def y_of(str)
-    binding.pry
-    chars = str.gsub(/[\d]/, "")
-    chars.ord - 64
+    str[0].ord - 64
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
