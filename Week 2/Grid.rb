@@ -55,7 +55,6 @@ class Grid
     str.to_i
   end
   def y_of(str)
-    binding.pry
     chars = str.gsub(/[\d]/, "")
     chars.ord - 64
   end
