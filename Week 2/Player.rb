@@ -1,7 +1,8 @@
 class Player
-	attr_reader :player, :HumanPlayer, :ComputerPlayer
-	
-	def initialize player
-		@player = player
+	attr_reader :grid, :name
+
+  def initialize(name)
+    @name = name
+    @grid = Grid.new
 	end
 end
