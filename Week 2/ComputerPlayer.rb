@@ -1,5 +1,6 @@
 # require_relative "error"
 class ComputerPlayer < Player
+<<<<<<< HEAD
   def initialize
     raise ArgumentError, "ComputerPlayer cannot be named...yet" if self.name != nil
     super "HAL 9000"
@@ -22,4 +23,9 @@ class ComputerPlayer < Player
     "A1"
   end
 
+=======
+	def initialize
+		super "HAL 9000"
+	end
+>>>>>>> ac43400017f94182ba2f2cadda11aac19e17aa69
 end
