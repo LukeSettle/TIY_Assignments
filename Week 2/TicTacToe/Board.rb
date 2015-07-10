@@ -7,14 +7,18 @@ class Board
 		3.times {@grid << [Move.new("empty"), Move.new("empty"), Move.new("empty")]}
 	end
 	def full?
-		false
+		@grid.each do |row|
+			row.each do |space|
+				return false if space.empty?
+			end
+		end
+		true
 	end
 
 	def display
 		str = ""
 		@grid.each do |row|
 			row.each do |space|
-				# byebug
 				if space.empty? 
 					str += "_"
 				elsif space.X?
