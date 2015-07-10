@@ -427,30 +427,30 @@ J |   |   |   |   |   |   |   |   |   |   |
   end
 
   # Second, test that the place_ships method works.
-  def test_38_game_can_place_ships
-    human = HumanPlayer.new("Frank")
-    computer = ComputerPlayer.new
-    game = Game.new(human, computer)
-    $mock_inputs.clear
-    $mock_inputs += standard_placement
-    assert_output("Frank, where would you like to place a ship of length 2?\nAcross or Down?\n"+
-                  "Frank, where would you like to place a ship of length 3?\nAcross or Down?\n"+
-                  "Frank, where would you like to place a ship of length 3?\nAcross or Down?\n"+
-                  "Frank, where would you like to place a ship of length 4?\nAcross or Down?\n"+
-                  "Frank, where would you like to place a ship of length 5?\nAcross or Down?\n"+
-                  "HAL 9000 has placed its ships.\n") do
-      game.place_ships
-    end
+  # def test_38_game_can_place_ships
+  #   human = HumanPlayer.new("Frank")
+  #   computer = ComputerPlayer.new
+  #   game = Game.new(human, computer)
+  #   $mock_inputs.clear
+  #   $mock_inputs += standard_placement
+  #   assert_output("Frank, where would you like to place a ship of length 2?\nAcross or Down?\n"+
+  #                 "Frank, where would you like to place a ship of length 3?\nAcross or Down?\n"+
+  #                 "Frank, where would you like to place a ship of length 3?\nAcross or Down?\n"+
+  #                 "Frank, where would you like to place a ship of length 4?\nAcross or Down?\n"+
+  #                 "Frank, where would you like to place a ship of length 5?\nAcross or Down?\n"+
+  #                 "HAL 9000 has placed its ships.\n") do
+  #     game.place_ships
+  #   end
 
-    assert_equal 5, human.ships.length
-    assert human.grid.has_ship_on?(1, 2)
-    assert human.grid.has_ship_on?(3, 3)
-    assert human.grid.has_ship_on?(9, 5)
-    refute human.grid.has_ship_on?(7, 7)
+  #   assert_equal 5, human.ships.length
+  #   assert human.grid.has_ship_on?(1, 2)
+  #   assert human.grid.has_ship_on?(3, 3)
+  #   assert human.grid.has_ship_on?(9, 5)
+  #   refute human.grid.has_ship_on?(7, 7)
 
-    assert_equal 5, computer.ships.length
-    assert_equal 4, computer.ships[3].length
-  end
+  #   assert_equal 5, computer.ships.length
+  #   assert_equal 4, computer.ships[3].length
+  # end
 
   def standard_placement
     ["A1","Down","A3","Down","A5","Down","A7","Down","A9","Down"]

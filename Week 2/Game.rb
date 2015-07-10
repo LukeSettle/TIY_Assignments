@@ -14,4 +14,11 @@ class Game
 		human.place_ships([2, 3, 3, 4, 5])
 		computer.place_ships([2, 3, 3, 4, 5])
 	end
+
+	def display_status
+		puts "SHOTS TAKEN"
+		human.grid.display_shots
+		puts "YOUR BOARD"
+		human.grid.display
+	end
 end

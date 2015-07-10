@@ -44,6 +44,21 @@ class Grid
     puts "  -----------------------------------------"
   end
 
+  def display_shots
+   board = []
+   10.times { board << [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "] }
+   ship_holes.each do |hole|
+    ship_holes.each do |hole|
+      board[hole.y - 1][hole.x - 1] = hole.to_s
+    end
+    puts "    1   2   3   4   5   6   7   8   9   10"
+    puts "  -----------------------------------------"
+    ("A".ord.."J".ord).each_with_index do |x, r|
+      row = board[r]
+      puts "#{x.chr} | #{row.join(" | ")} |"
+    end
+    puts "  -----------------------------------------"
+  end
   def sunk?
     return false if @ships.empty?
     sunk_ships = @ships.select{|ship| ship.sunk?}

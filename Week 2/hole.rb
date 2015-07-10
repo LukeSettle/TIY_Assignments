@@ -1,5 +1,5 @@
 class Hole
-	attr_reader :x, :y
+	attr_reader :x, :y, :shot
 
 	def initialize x, y
 		@x = x
@@ -18,10 +18,18 @@ class Hole
 	def empty?
 		@state == :empty
 	end
+	def shot!
+		@state = :shot
+	end
+	def shot?
+		@state == :shot
+	end
 
 	def to_s
 		if @state == :empty
 			"O"
+		elsif @state == :shot
+			"+"
 		else
 			"X"
 		end

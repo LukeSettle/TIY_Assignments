@@ -1,6 +1,4 @@
-
 class HumanPlayer < Player
-<<<<<<< HEAD
   def initialize  name = "Dave"
     super name
   end
@@ -16,24 +14,12 @@ class HumanPlayer < Player
    end
 
    def call_shot
-     puts "Dave, please enter the coordinates for your next shot (e.g. 'B10'):"
-     get_user_input
+    puts "#{name}, please enter the coordinates for your next shot (e.g. 'B10'):"
+    hole = get_user_input
+    x = @grid.x_of(hole) 
+    y = @grid.x_of(hole)
+    new_hole = Hole.new x, y
+    new_hole.shot!
+    return hole
    end
-
 end
-=======
-	def initialize(name = "Dave")
-		super name
-	end
-
-  def get_ship_position length
-    puts "#{@name}, where would you like to place a ship of length #{length}?"
-    cords =  get_user_input
-    puts "Across or Down?"
-    axis = get_user_input
-    x = @grid.x_of(cords)
-    y = @grid.y_of(cords)
-    [x, y, axis == "Across"]
-  end
-end
->>>>>>> ac43400017f94182ba2f2cadda11aac19e17aa69
