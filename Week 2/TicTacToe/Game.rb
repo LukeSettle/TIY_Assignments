@@ -12,3 +12,7 @@ require_relative "Board"
 board = Board.new
 board.display
 
+board.grid[0].each do |space|
+	space.X!
+	byebug
+end

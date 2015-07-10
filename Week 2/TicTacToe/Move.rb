@@ -11,7 +11,7 @@ class Move
 		@type == "empty"
 	end
 	def X!
-		@type = "empty"
+		@type = "X"
 	end
 	def X?
 		@type == "X"
