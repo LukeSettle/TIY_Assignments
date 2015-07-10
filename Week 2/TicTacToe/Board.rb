@@ -33,13 +33,14 @@ class Board
 	end
 
 	def win
-		self.grid[0].each do |space|
+		for m in 0..2 do 
+		self.grid[m].each do |space|
 			if space.X?
 				return "X is the winner"
-			else
-				return "X is not the winner"
+			elsif space.Y?
+				return "Y is not the winner"
 			end
 		end
 	end
-
+	end
 end
