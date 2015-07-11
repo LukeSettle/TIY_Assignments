@@ -1,8 +1,10 @@
 require_relative "Move"
+require_relative "Player"
 require "byebug"
 class Board
 	attr_reader :board, :grid
-	def initialize 
+	def initialize
+		@players = [Player.new("player1", "X"), Player.new("player2", "Y")]
 		@grid = []
 		3.times {@grid << [Move.new("empty"), Move.new("empty"), Move.new("empty")]}
 	end
@@ -34,13 +36,23 @@ class Board
 
 	def win
 		for m in 0..2 do 
-		self.grid[m].each do |space|
-			if space.X?
-				return "X is the winner"
-			elsif space.Y?
-				return "Y is not the winner"
+			self.grid[m].each do |space|
+				if space.X?
+					return puts "X is the winner"
+				elsif space.Y?
+					return puts "Y is not the winner"
+				end
 			end
 		end
 	end
+
+	def place_move x, y, move
+		@players.each do |player|
+			if player.move.type == "X"
+				return  @grid[x][y].X!
+			else
+				return  @grid[x][y].Y!
+			end
+		end
 	end
 end

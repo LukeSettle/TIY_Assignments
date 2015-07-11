@@ -3,7 +3,6 @@ class Move
 	def initialize type
 		@type = type
 	end
-
 	def empty!
 		@type = "empty"
 	end
