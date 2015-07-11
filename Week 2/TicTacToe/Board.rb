@@ -2,7 +2,7 @@ require_relative "Move"
 require_relative "Player"
 require "byebug"
 class Board
-	attr_reader :board, :grid
+	attr_reader :board, :grid, :players
 	def initialize
 		@players = [Player.new("player1", "X"), Player.new("player2", "Y")]
 		@grid = []
@@ -36,12 +36,11 @@ class Board
 
 	def win
 		for m in 0..2 do 
-			self.grid[m].each do |space|
-				if space.X?
-					return puts "X is the winner"
-				elsif space.Y?
-					return puts "Y is not the winner"
-				end
+			row = self.grid[m].uniq == 1
+			if row == 1 && row.X?
+				return puts "X is the winner"
+			elsif row == 1 && row.Y?
+				return puts "Y is the winner"
 			end
 		end
 	end

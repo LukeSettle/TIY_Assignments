@@ -11,9 +11,21 @@ require "byebug"
 # end
 
 board = Board.new
-board.place_move 1, 1, @player1
-board.place_move 1, 0, @player1
-board.place_move 1, 2, @player1
-board.display
+begin
+	board.display
+	puts "What row do you want to play on player 1?"
+	x = gets.chomp.to_i
+	puts "What column would you like to play on player 1?"
+	y = gets.chomp.to_i
+	board.place_move x, y, board.players[0]
+	board.display
+
+	puts "What row do you want to play on player 2?"
+	x = gets.chomp.to_i
+	puts "What column would you like to play on player 2?"
+	y = gets.chomp.to_i
+	board.place_move x, y, board.players[1]
+	board.display
+end until board.win
 
 
