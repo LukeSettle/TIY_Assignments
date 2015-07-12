@@ -42,16 +42,18 @@ class Board
 			end
 			row = row.uniq
 			if row.count == 1 && row[0] == "X"
-				return puts "X is the winner"
+				return true
 			elsif row.count == 1 && row[0] == "Y"
-				return puts "Y is the winner"
+				return true
 			end
+			if self.grid[m][0] == self.grid[m][1] && self.grid[m][0] == self.grid[m][2]
+				return self.grid[m]
 		end
 		false
 	end
 
-	def place_move x, y, move
-		if move.type == "X"
+	def place_move x, y, player
+		if player.type == "X"
 			return  @grid[x][y].X!
 		else
 			return  @grid[x][y].Y!

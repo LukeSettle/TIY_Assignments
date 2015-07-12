@@ -1,9 +1,18 @@
-require_relative "../PlayerX"
+require_relative "../Player"
+require "byebug"
 describe Player do
-	let(:player) { PlayerX.new }
 	it "can be initialized with an X" do
-		expect(player.move.type).to eq("X")
+		playerX = Player.new "X"
+		expect(playerX.move.type).to eq("X")
 		playerY = Player.new "Y"
 		expect(playerY.move.type).to eq("Y")
 	end
+
+	it "validates player moves" do 
+		player = Player.new "X"
+		player.get_move
+		byebug
+		expect(@x).to eq(@x)
+	end
+
 end
