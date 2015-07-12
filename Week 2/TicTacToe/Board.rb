@@ -35,23 +35,26 @@ class Board
 	end
 
 	def win
+		row = []
 		for m in 0..2 do 
-			row = self.grid[m].uniq == 1
-			if row == 1 && row.X?
+			self.grid[m].each do |space|
+				row << space.type
+			end
+			row = row.uniq
+			if row.count == 1 && row[0] == "X"
 				return puts "X is the winner"
-			elsif row == 1 && row.Y?
+			elsif row.count == 1 && row[0] == "Y"
 				return puts "Y is the winner"
 			end
 		end
+		false
 	end
 
 	def place_move x, y, move
-		@players.each do |player|
-			if player.move.type == "X"
-				return  @grid[x][y].X!
-			else
-				return  @grid[x][y].Y!
-			end
+		if move.type == "X"
+			return  @grid[x][y].X!
+		else
+			return  @grid[x][y].Y!
 		end
 	end
 end
