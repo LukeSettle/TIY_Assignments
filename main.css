@@ -1,3 +1,65 @@
 body {
-	background: blue;
+	background: #009955;
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif
+}
+
+h2{
+	color:black;
+	text-align: center;
+}
+
+.intro{
+	text-align: center;
+}
+
+.moving_pictures {
+	border:dotted 100px yellow;
+	display: block;
+	margin: 0px auto;
+}
+
+#header_stuff{
+	text-align: center;
+}
+
+iframe {
+	position: absolute;
+	top:10000em;
+	left:0em;
+}
+
+.first{
+	font-size: 20em;
+	text-align: center;
+}
+
+.middle{
+	font-size: 20em;
+	text-align: center;
+	position: relative;
+	top:75em;
+	left: 0em;
+}
+.second{
+	font-size: 20em;
+	text-align: center;
+	position: relative;
+	top:150em;
+	left: 0em;
+}
+
+.third{
+	font-size: 20em;
+	text-align: center;
+	position: relative;
+	top:200em;
+	left: 0em;
+}
+
+.last{
+	font-size: 20em;
+	text-align: center;
+	position: relative;
+	top:300em;
+	left: 0em;
 }
