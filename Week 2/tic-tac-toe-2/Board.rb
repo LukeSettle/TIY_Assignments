@@ -3,6 +3,7 @@ require_relative "ComputerPlayer"
 require "byebug"
 
 class Board
+  attr_reader :again
   def initialize
     @grid = []
     3.times { @grid << [nil, nil, nil] }
@@ -60,50 +61,51 @@ end
 class InvalidMoveException < Exception
 end
 
-
-
-board = Board.new
-puts "how many players?"
-number_of_players = gets.chomp.to_i
-until number_of_players <= 2 && number_of_players >= 0
-  puts "You can play with 0, 1, or 2 players"
+def run
+  board = Board.new
+  puts "how many players?"
   number_of_players = gets.chomp.to_i
-end
-  if number_of_players == 0
-    player1 = ComputerPlayer.new "X"
-    player2 = ComputerPlayer.new "O"
-  elsif number_of_players == 1
-    player1 = HumanPlayer.new "X"
-    player2 = ComputerPlayer.new "O"
-  elsif number_of_players == 2
-    player1 = HumanPlayer.new "X"
-    player2 = HumanPlayer.new "O"
+  until number_of_players <= 2 && number_of_players >= 0
+    puts "You can play with 0, 1, or 2 players"
+    number_of_players = gets.chomp.to_i
   end
-    
-# should be a player object
-current_player = player1
-while !board.game_over? do
-  puts board.to_s
-  move = current_player.get_move
-  while !board.valid_move?(move[:row], move[:column])
-    puts "Invalid move"
+    if number_of_players == 0
+      player1 = ComputerPlayer.new "X"
+      player2 = ComputerPlayer.new "O"
+    elsif number_of_players == 1
+      player1 = HumanPlayer.new "X"
+      player2 = ComputerPlayer.new "O"
+    elsif number_of_players == 2
+      player1 = HumanPlayer.new "X"
+      player2 = HumanPlayer.new "O"
+    end
+      
+  current_player = player1
+  while !board.game_over? do
+    puts board.to_s
     move = current_player.get_move
+    while !board.valid_move?(move[:row], move[:column])
+      puts "Invalid move"
+      move = current_player.get_move
+    end
+    board.move(move[:row], move[:column], current_player.letter)
+  
+    if current_player == player1
+      current_player = player2
+    else
+      current_player = player1
+    end
   end
-  board.move(move[:row], move[:column], current_player.letter)
-
-  if current_player == player1
-    current_player = player2
+  
+  winner = board.winner
+  
+  if winner
+    puts "#{winner} won the game"
   else
-    current_player = player1
+    puts "draw"
   end
+  puts board.to_s
+
+  puts "do you want to play again?"
+  @again = gets.chomp.downcase
 end
-
-winner = board.winner
-
-if winner
-  puts "#{winner} won the game"
-else
-  puts "draw"
-end
-
-puts board.to_s
