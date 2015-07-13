@@ -108,4 +108,8 @@ def run
 
   puts "do you want to play again?"
   @again = gets.chomp.downcase
+  until @again == "yes" || @again == "no"
+    puts "please input yes or no"
+    @again = gets.chomp.downcase
+  end
 end
